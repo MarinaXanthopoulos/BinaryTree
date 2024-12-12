@@ -7,8 +7,10 @@ import java.util.ArrayList;
  */
 
 public class BST {
+    // Instance Variable
     private BSTNode root;
 
+    // Getters & setters
     public BSTNode getRoot() {
         return this.root;
     }
@@ -21,6 +23,7 @@ public class BST {
      * Sets up a binary search tree
      * with some default values
      */
+    // constructor
     public void setupTestData() {
         this.root = new BSTNode(10);
         this.root.setLeft(new BSTNode(5));
@@ -47,8 +50,28 @@ public class BST {
      * @return true if val is in the tree, false otherwise
      */
     public boolean search(int val) {
-        // TODO: Complete the search function
-        return false;
+        // Start search at the root
+        BSTNode current = root;
+        return searchRecursion(current, val);
+    }
+
+    private boolean searchRecursion(BSTNode current, int val) {
+        // Base case is if the current node = val
+        if (current.getVal() == val){
+            return true;
+        }
+        // If current is greater than the value, set current to the left node child
+        else if (current.getVal() > val && current.getLeft() != null){
+            current = current.getLeft();
+        }
+        // Otherwise it's less than the value set current to the right node child
+        else if (current.getVal() < val && current.getRight() != null) {
+            current = current.getRight();
+        }
+        else {
+            return false;
+        }
+        return searchRecursion(current, val);
     }
 
     /**
