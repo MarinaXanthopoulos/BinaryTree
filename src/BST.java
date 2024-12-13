@@ -78,24 +78,71 @@ public class BST {
      * @return ArrayList of BSTNodes in inorder
      */
     public ArrayList<BSTNode> getInorder() {
-        // TODO: Complete inorder traversal
-        return null;
+        // Make ArrayList for the roots
+        ArrayList<BSTNode> ordered = new ArrayList<BSTNode>();
+        BSTNode current = root;
+        inOrderRecursion(current, ordered);
+        return ordered;
+    }
+
+    public void inOrderRecursion(BSTNode current, ArrayList<BSTNode> ordered) {
+        // Base case if current is empty
+        if (current == null){
+            return;
+        }
+        // Go through all left branches
+        inOrderRecursion(current.getLeft(), ordered);
+        // Then add them to the array list
+        ordered.add(current);
+        // Then go through all the right ones
+        inOrderRecursion(current.getRight(), ordered);
     }
 
     /**
      * @return ArrayList of BSTNodes in preorder
      */
     public ArrayList<BSTNode> getPreorder() {
-        // TODO: Complete preorder traversal
-        return null;
+        ArrayList<BSTNode> ordered = new ArrayList<BSTNode>();
+        BSTNode current = root;
+        preorderRecursion(current, ordered);
+        return ordered;
+    }
+
+    public void preorderRecursion(BSTNode current, ArrayList<BSTNode> ordered) {
+        // Base case if current is empty
+        if (current == null){
+            return;
+        }
+        // Add current to the array list
+        ordered.add(current);
+
+        // Then do all the left roots then right
+        preorderRecursion(current.getLeft(), ordered);
+        preorderRecursion(current.getRight(), ordered);
     }
 
     /**
      * @return ArrayList of BSTNodes in postorder
      */
     public ArrayList<BSTNode> getPostorder() {
-        // TODO: Complete postorder traversal
-        return null;
+        ArrayList<BSTNode> ordered = new ArrayList<BSTNode>();
+        BSTNode current = root;
+        postorderRecursion(current, ordered);
+        return ordered;
+    }
+
+    public void postorderRecursion(BSTNode current, ArrayList<BSTNode> ordered) {
+        // Base case if current is empty
+        if (current == null){
+            return;
+        }
+
+        // Then do all the left roots then right
+        postorderRecursion(current.getLeft(), ordered);
+        postorderRecursion(current.getRight(), ordered);
+
+        // Add current to the array list
+        ordered.add(current);
     }
 
     /**
