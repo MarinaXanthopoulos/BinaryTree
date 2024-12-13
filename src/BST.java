@@ -152,7 +152,28 @@ public class BST {
      * @param val The value ot insert
      */
     public void insert(int val) {
-        // TODO: Complete insert
+        root = insertRecursion(val, root);
+    }
+
+    public BSTNode insertRecursion(int val, BSTNode current) {
+        // Base case if the left and right children are null
+        if (current != null && val == current.getVal()){
+            return root;
+        }
+        // If there'es a position where a child doesn't exist, insert val here
+        if (current == null){
+            current = new BSTNode(val);
+            return current;
+        }
+        // Get left val if root is greater than val
+        if (val < current.getVal()){
+            current.setLeft(insertRecursion(val, current.getLeft()));
+        }
+        // Otherwise it's less than val so go right
+        else if (val > current.getVal()){
+            current.setRight(insertRecursion(val, current.getRight()));
+        }
+        return current;
     }
 
     /**
